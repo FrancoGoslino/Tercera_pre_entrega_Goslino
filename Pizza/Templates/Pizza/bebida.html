@@ -1,0 +1,23 @@
+{% extends "Pizza/base.html" %}
+
+{% load static %}
+
+{% block principal %}
+
+<h1>MENU DE BEBIDAS</h1>
+{% if form %}
+<form action="{% url 'agregar-bebida' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+</form>
+{% endif %}
+
+<ul>
+    {%  for Bebida in Bebidas  %}
+    <li> {{bebida.id}} - {{ bebida.nombre_bebida }} - {{ bebida.precio_bebida}}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
