@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from Pizza.models import Bebida, Pizza, Empanada
 from Pizza.forms import BebidaForm, PizzaForm, EmpanadaForm
+
+
 def BASE(request):
     return render(request, "Pizza/BASE.html")
+#-------------------------------------------------------------------------------------------------------------------#
 #-----------FUNCION BEBIDA-------->
 def agregar_bebida(request):
     if request.method == 'POST':
@@ -23,18 +26,16 @@ def agregar_bebida(request):
             return render(request, 'Pizza/bebida.html', {'form': form})
     form_bebida = BebidaForm()
     return render(request, 'Pizza/bebida.html', {'form': form_bebida})
-"""context = {
-         "bebidas": Bebida.objects.all(),
-         "form": BebidaForm(),
-         }
-    return render(request, "Pizza/bebida.html", context)   
-"""
+
+
         #-----------FUNCION BUSCAR BEBIDAS-------->
 def buscar_bebida(request):
-    opcion=request.GET.get('opcion')
-    context= {"bebidas":Bebida.objects.filter(nombre_bebida__icontains=opcion).all()}    
+    if request.GET["nombre_bebida"]: 
+        opcion=request.GET.get('nombre_bebida')
+        context= {"bebidas":Bebida.objects.filter(nombre_bebida__icontains=opcion).all()}    # Este nombre que asignamos, sera utilizado en bebida.html en {%  for bebida in bebidas %}
     return render(request, 'Pizza/bebida.html', context)
-        #-----------FUNCION BUSCAR BEBIDAS-------->
+
+        #-----------FUNCIOnes de prueba BEBIDAS-------->
 def mostrar_bebida(request):
     context = {
          "bebidas": Bebida.objects.all(),
@@ -46,6 +47,16 @@ def mostrar_otro(request):
     bebidas=Bebida.objects.all()
     return render(request,'Pizza/BASE.html', {"bebidas": bebidas})
 
+def buscar (request):
+       nombre = request.GET.get('nombre')
+       cliente= Bebida.objects.filter(nombre_bebida__icontains=nombre)
+
+       return render(request, "Pizza/resultado_busqueda.html", {"cliente":cliente, "nombre":nombre})
+   
+def busquedaBebida (request):
+    return render (request, "Pizza/busqueda_bebida.html")
+
+#-------------------------------------------------------------------------------------------------------------------#
 #-----------FUNCION PIZZA-------->
 def agregar_pizza(request):
     if request.method == 'POST':
@@ -55,18 +66,18 @@ def agregar_pizza(request):
             data = form.cleaned_data
     
             pizza = Pizza(
-                nombre_Pizza=data.get('nombre_Pizza'),
-                precio_Pizza=data.get('precio_Pizza'),
-                descripcion_Pizza= data.get('descripcion_Pizza'),
-                tamanio_Pizza= data.get('tamanio_Pizza'),
+                nombre_pizza=data.get('nombre_pizza'),
+                precio_pizza=data.get('precio_pizza'),
+                descripcion_pizza= data.get('descripcion_pizza'),
+                tamanio_pizza= data.get('tamanio_pizza'),
             )
             pizza.save()
         else:
             return render(request, 'Pizza/pizza.html', {'form': form})
     form_pizza= PizzaForm()
     return render(request, 'Pizza/pizza.html', {'form': form_pizza})
-
-
+  
+#-------------------------------------------------------------------------------------------------------------------#
 #-----------FUNCION EMPANADUQUIS-------->
 def agregar_empanada(request):
     if request.method == 'POST':
@@ -93,21 +104,4 @@ def agregar_empanada(request):
 
 
 
-def buscar_bebida(request):
-    opcion=request.GET.get('opcion')
-    context= {"bebidas":Bebida.objects.filter(nombre_bebida__icontains=opcion).all()}    
-    return render(request, 'Pizza/bebida.html', context)
 
-
-
-
-def buscar (request):
-       nombre = request.GET.get('nombre')
-       cliente= Bebida.objects.filter(nombre_bebida__icontains=nombre)
-
-       return render(request, "Pizza/resultado_busqueda.html", {"cliente":cliente, "nombre":nombre})
-   
-   
-   
-def busquedaBebida (request):
-    return render (request, "Pizza/busqueda_bebida.html")

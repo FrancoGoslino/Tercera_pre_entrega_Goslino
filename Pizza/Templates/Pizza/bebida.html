@@ -17,8 +17,8 @@
 {% endif %}
 
 <ul>
-    {%  for bebidas in Bebida  %}
-    <li> {{bebida.id}} - {{ bebida.nombre_bebida }} - {{ bebida.precio_bebida}}</li>
+     {%  for bebida in bebidas %}  {% comment %} usamos el nombre que le dimos en el context de views.py {% endcomment %}
+    <li> {{bebida.id}} - {{ bebida.nombre_bebida }} - ${{ bebida.precio_bebida}}</li>
     {% endfor %}
 </ul>
 

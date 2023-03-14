@@ -27,6 +27,7 @@ urlpatterns = [
     path('mostrar/otro/', mostrar_otro, name= 'mostrar/otro/'),
     path("buscar/", busquedaBebida, name= 'buscar/'),
     path('resultado/', buscar,name= 'resultado/'),
+    path('buscar_bebida', buscar_bebida, name= 'buscar_bebida'),
 ]
     
     

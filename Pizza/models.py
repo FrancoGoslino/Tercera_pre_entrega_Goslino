@@ -20,7 +20,7 @@ class Pizza(models.Model):
         tamanio_pizza=  models.CharField(max_length=10)
         
         def __str__(self):
-            return f"{self.id} - {self.nombre_pizza} - ${self.precio_pizza} - {self.tamaño_pizza}"
+            return f"{self.id} - {self.nombre_pizza} - ${self.precio_pizza} - {self.tamanio_pizza}"
         
         
 class Empanada(models.Model):

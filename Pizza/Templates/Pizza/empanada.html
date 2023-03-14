@@ -1,4 +1,3 @@
-
 {% extends "Pizza/BASE.html" %}
 
 {% load static %}
@@ -19,8 +18,8 @@
 {% endif %}
 
 <ul>
-    {%  for Emmpanada in Empanadas  %}
-    <li> {{empanada.id}} - {{ empanada.nombre_empanada }} - {{ empanada.precio_empanada}}</li>
+    {%  for empanada in empanadas  %}
+    <li> {{empanada.id}} - {{ empanada.nombre_empanada }} - ${{ empanada.precio_empanada}}</li>
     {% endfor %}
 </ul>
 
