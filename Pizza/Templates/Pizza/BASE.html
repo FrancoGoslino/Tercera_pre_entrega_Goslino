@@ -44,17 +44,19 @@
       <a class="navbar-brand" href="{% url 'agregar/bebida/' %}" title= "BEBIDAS"> BEBIDAS </a>
       <a class="navbar-brand" href="{% url 'agregar/pizza/' %}" title= "PIZZAS">PIZZAS</a>
       <a class="navbar-brand" href="{% url 'agregar/empanada/' %}" title= "EMPANADAS" >EMPANADAS</a>
+      <a class="navbar-brand" href="{% url 'buscar/' %}" title= "EMPANADAS" >BUSQUEDA</a>
+
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0"></ul>
-{% comment %}  {% endcomment %}
-        <form class="d-flex" action="{% url 'buscar/bebida/' %}" method= GET>
-          <input class="form-control me-2" name="opcion" type="search" placeholder="Buscar bebida" aria-label="Buscar bebida">
+{% comment %}  
+        <form class="d-flex" action="{% url 'buscar/' %}" method= GET>
+          <input class="form-control me-2" name="opcion" type="search" placeholder="CACACACACA" aria-label="Buscar bebida">
           <button class="btn btn-outline-success" type="buscar">BUSCAR</button>
-        </form>
+        </form>{% endcomment %}
       </div>
     </div>
   </nav>

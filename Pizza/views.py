@@ -86,3 +86,28 @@ def agregar_empanada(request):
             return render(request, 'Pizza/empanada.html', {'form': form})
     form_empanada= EmpanadaForm()
     return render(request, 'Pizza/empanada.html', {'form': form_empanada})
+
+
+
+
+
+
+
+def buscar_bebida(request):
+    opcion=request.GET.get('opcion')
+    context= {"bebidas":Bebida.objects.filter(nombre_bebida__icontains=opcion).all()}    
+    return render(request, 'Pizza/bebida.html', context)
+
+
+
+
+def buscar (request):
+       nombre = request.GET.get('nombre')
+       cliente= Bebida.objects.filter(nombre_bebida__icontains=nombre)
+
+       return render(request, "Pizza/resultado_busqueda.html", {"cliente":cliente, "nombre":nombre})
+   
+   
+   
+def busquedaBebida (request):
+    return render (request, "Pizza/busqueda_bebida.html")
