@@ -72,11 +72,19 @@ def agregar_pizza(request):
                 tamanio_pizza= data.get('tamanio_pizza'),
             )
             pizza.save()
+            return render(request, 'Pizza/pizza.html', )
         else:
             return render(request, 'Pizza/pizza.html', {'form': form})
     form_pizza= PizzaForm()
     return render(request, 'Pizza/pizza.html', {'form': form_pizza})
   
+def buscar_pizza(request):
+    if request.GET["nombre_pizza"]: 
+        opcion=request.GET.get('nombre_pizza')
+        context= {"pizzas":Pizza.objects.filter(nombre_pizza__icontains=opcion).all()}    # Este nombre que asignamos, sera utilizado en bebida.html en {%  for bebida in bebidas %}
+    return render(request, 'Pizza/pizza.html', context)
+
+
 #-------------------------------------------------------------------------------------------------------------------#
 #-----------FUNCION EMPANADUQUIS-------->
 def agregar_empanada(request):
@@ -89,10 +97,11 @@ def agregar_empanada(request):
             empanada = Empanada(
                 nombre_empanada=data.get('nombre_empanada'),
                 precio_empanada=data.get('precio_empanada'),
-                coccion_empanada= data.get('tipo_de_coccion_de_empanada'),
+                coccion_empanada= data.get('coccion_empanada'),
                 sabor_empanada= data.get('sabor_empanada'),
             )
             empanada.save()
+            return render(request, 'Pizza/empanada.html', )
         else:
             return render(request, 'Pizza/empanada.html', {'form': form})
     form_empanada= EmpanadaForm()
@@ -101,7 +110,11 @@ def agregar_empanada(request):
 
 
 
-
+def buscar_empanada(request):
+    if request.GET["nombre_empanada"]: 
+        opcion=request.GET.get('nombre_empanada')
+        context= {"empanadas":Empanada.objects.filter(nombre_empanada__icontains=opcion).all()}    # Este nombre que asignamos, sera utilizado en bebida.html en {%  for bebida in bebidas %}
+    return render(request, 'Pizza/empanada.html', context)
 
 
 
