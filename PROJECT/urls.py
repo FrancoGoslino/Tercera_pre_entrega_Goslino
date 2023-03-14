@@ -14,11 +14,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Pizza.views import BASE, agregar_producto
+from Pizza.views import BASE, agregar_bebida, agregar_pizza ,agregar_empanada, buscar_bebida, mostrar_bebida, mostrar_otro
 
 urlpatterns = [
     path('', BASE, name="BASE"),
     path('admin/', admin.site.urls),
-    path('bebida/agregar',agregar_producto, name="agregar-bebida" ) 
-    
+    path('agregar/bebida/',agregar_bebida, name="agregar/bebida/" ),
+    path('agregar/pizza/', agregar_pizza, name= 'agregar/pizza/'),
+    path('agregar/empanada/', agregar_empanada, name='agregar/empanada/'),
+    path('buscar/bebida/', buscar_bebida, name= 'buscar/bebida/'),
+    path('mostrar/bebida/', mostrar_bebida, name='mostrar/bebida/'),
+    path('mostrar/otro/', mostrar_otro, name= 'mostrar/otro/')
 ]
+    
+    
+    
+    
+    
+    
+    

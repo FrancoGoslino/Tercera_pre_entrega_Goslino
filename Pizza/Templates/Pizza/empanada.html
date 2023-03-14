@@ -1,1 +1,28 @@
-<h1> MENU DE EMPANADAS </h1>
+
+{% extends "Pizza/BASE.html" %}
+
+{% load static %}
+
+{% block principal %}
+
+<h1>MENU DE EMPANADAS</h1>
+
+{% if form %}
+
+<form action="{% url 'agregar/empanada/' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+</form>
+
+
+{% endif %}
+
+<ul>
+    {%  for Emmpanada in Empanadas  %}
+    <li> {{empanada.id}} - {{ empanada.nombre_empanada }} - {{ empanada.precio_empanada}}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

@@ -1,1 +1,27 @@
-<h1> MENU DE PIZZAS </h1>
+{% extends "Pizza/BASE.html" %}
+
+{% load static %}
+
+{% block principal %}
+
+<h1>MENU DE PIZZAS</h1>
+
+{% if form %}
+
+<form action="{% url 'agregar/pizza/' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+</form>
+
+
+{% endif %}
+
+<ul>
+    {%  for Pizza in Pizzas  %}
+    <li> {{pizza.id}} - {{ pizza.nombre_pizza }} - {{ pizza.precio_pizza}}</li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
